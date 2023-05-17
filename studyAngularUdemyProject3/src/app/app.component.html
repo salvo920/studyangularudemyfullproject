@@ -3,10 +3,19 @@
   <hr>
   <div class="row">
     <div class="col-xs-12">
-      <app-server-element *ngFor="let serverElement of serverElements"
-        [serverElement]="serverElement"></app-server-element>
+      <button class="btn btn-primary" (click)="onChangeFirst()">Change first Element </button>
+      <button class="btn btn-danger" (click)="onDestroyFirst()"> Destroy First Button </button>
+      <app-server-element *ngFor="let serverElement of serverElements" [serverElement]="serverElement"
+        [serverName]="serverElement.name">
+        <p>
+          <strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>
+          <em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>
+        </p>
+      </app-server-element>
     </div>
   </div>
 </div>
 
-<!-- fermo al video 73 - Using local refereces in templates , progetto 3  -->
+<hr>
+<app-life-cycle></app-life-cycle>
+<hr>

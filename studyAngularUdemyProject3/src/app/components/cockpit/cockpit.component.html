@@ -2,11 +2,15 @@
     <div class="col-xs-12">
         <p>Add new Servers or blueprints!</p>
         <label>Server Name</label>
-        <input type="text" class="form-control" [(ngModel)]="newServerName">
+        <!-- <input type="text" class="form-control" [(ngModel)]="newServerName"> -->
+        <!-- le variabil di template possono essere usate solo all'interno del template html e non su ts  -->
+        <!-- cosi effettuaimo il bind con la variabile del template e qul tag html , detta anche local referece video 73  -->
+        <input type="text" class="form-control" #serverNameInut>
         <label>Server Content</label>
-        <input type="text" class="form-control" [(ngModel)]="newServerContent">
+        <!-- <input type="text" class="form-control" [(ngModel)]="newServerContent"> -->
+        <input type="text" class="form-control" #serverContentInput>
         <br>
-        <button class="btn btn-primary" (click)="onAddServer()">Add Server</button>
-        <button class="btn btn-primary" (click)="onAddBlueprint()">Add Server Blueprint</button>
+        <button class="btn btn-primary" (click)="onAddServer(serverNameInut)">Add Server</button>
+        <button class="btn btn-primary" (click)="onAddBlueprint(serverNameInut)">Add Server Blueprint</button>
     </div>
 </div>

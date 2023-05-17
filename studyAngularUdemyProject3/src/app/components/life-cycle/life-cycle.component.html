@@ -1,0 +1,17 @@
+<p>life-cycle componente con commenti nel file ts , con i dettagli sul ciclo di vita di Angular </p>
+
+<!-- 
+  bonus : prendere tutti gli elementi figli di c figli di .a , senza usare il selettore .b  
+  se usiamo : .a>.b>.c andiamo a prendere tutti gli elementi di cui il parent e la classe > i fligli con classe .b  della classe .a > i figli con classe .c delle classi .a e .b 
+  soluzione : .a .c : cosi andiamo a selezionare solo i figli con classe c , della classe a  
+  il carattere spazio nel css : .a .c seleziona tutti gli elementi .c che sono dentro .a , anche se ci sono altri elementi tra di loro 
+  
+  spiegazione stackoverflow : 
+  A > B will only select B that are direct children to A (that is, there are no other elements inbetween).
+  A B will select any B that are inside A, even if there are other elements between them.
+-->
+<div class="a">
+    <div class="b">
+        <div class="c"> Testo di prova inizializzao di colore bianco se il selettore usato e giusto sara blu </div>
+    </div>
+</div>
