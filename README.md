@@ -15,22 +15,14 @@ Already a pro? Just edit this README.md and make it your own. Want to make it ea
 
 ```
 cd existing_repo
-<<<<<<< HEAD
-git remote add origin https://gitlab.com/Salvatore.Celano/studyAngularUdemyFullProject.git
-=======
 git remote add origin https://gitlab.com/salvoPersonal/studyangularudemyfullproject.git
->>>>>>> a6fc54b577eb4734b443574a3ab5296b168b41c2
 git branch -M main
 git push -uf origin main
 ```
 
 ## Integrate with your tools
 
-<<<<<<< HEAD
-- [ ] [Set up project integrations](https://gitlab.com/Salvatore.Celano/studyAngularUdemyFullProject/-/settings/integrations)
-=======
 - [ ] [Set up project integrations](https://gitlab.com/salvoPersonal/studyangularudemyfullproject/-/settings/integrations)
->>>>>>> a6fc54b577eb4734b443574a3ab5296b168b41c2
 
 ## Collaborate with your team
 
