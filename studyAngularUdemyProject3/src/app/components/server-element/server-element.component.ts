@@ -1,4 +1,4 @@
-import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, ContentChild, DoCheck, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-server-element',
@@ -20,6 +20,15 @@ export class ServerElementComponent implements OnInit, OnChanges, DoCheck, After
   AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
   @Input('serverElement') element: { type: string, name: string, content: string }
   @Input() serverName: string
+
+  // { static: true } : deve essere applicato per poter usare @viewChild altrimenti andra in errore ,
+  //  se proviamo ad accedergli da ngOnInit.
+  // nota anche che accediamo a questa variabile nella funzione ngAfterViewInit
+  @ViewChild('heading', { static: true }) header: ElementRef
+
+  // Nota bene : contentParagraph è l'Elemento del componente padre , cioe app > server content 
+  // nota anche che accediamo a questa variabile nella funzione ngAContentInit
+  @ContentChild('contentParagraph', { static: true }) contentParagraph: ElementRef
   constructor() {
     console.log("constructor called")
   }
@@ -31,6 +40,8 @@ export class ServerElementComponent implements OnInit, OnChanges, DoCheck, After
 
   ngOnInit(): void {
     console.log("ngOnInit called")
+    console.log("heading:", this.header.nativeElement.textContent)
+    console.log("textparagraph:", this.contentParagraph.nativeElement.textContent)
   }
 
   ngDoCheck(): void {
@@ -39,6 +50,7 @@ export class ServerElementComponent implements OnInit, OnChanges, DoCheck, After
 
   ngAfterContentInit(): void {
     console.log("ngAfterContentInit called")
+    console.log("textparagraph:", this.contentParagraph.nativeElement.textContent)
   }
 
   ngAfterContentChecked(): void {
@@ -47,6 +59,7 @@ export class ServerElementComponent implements OnInit, OnChanges, DoCheck, After
 
   ngAfterViewInit(): void {
     console.log("ngAfterViewInit called")
+    console.log("heading:", this.header.nativeElement.textContent)
   }
 
   ngAfterViewChecked(): void {

@@ -7,13 +7,19 @@ import { AppComponent } from './app.component';
 import { CockpitComponent } from './components/cockpit/cockpit.component';
 import { ServerElementComponent } from './components/server-element/server-element.component';
 import { LifeCycleComponent } from './components/life-cycle/life-cycle.component';
+import { GameControlComponent } from './components/game-control/game-control.component';
+import { OddComponent } from './components/odd/odd.component';
+import { EvenComponent } from './components/even/even.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CockpitComponent,
     ServerElementComponent,
-    LifeCycleComponent
+    LifeCycleComponent,
+    GameControlComponent,
+    OddComponent,
+    EvenComponent
   ],
   imports: [
     BrowserModule,

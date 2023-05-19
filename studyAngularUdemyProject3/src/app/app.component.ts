@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   serverElements = [{ type: 'server', name: 'TestServer', content: 'Just a test!!' }];
+  evenNumbers: number[] = []
+  oddNumbers: number[] = []
 
   onServerCreated(serverData: { serverName: string, serverContent: string }) {
     this.serverElements.push({
@@ -31,5 +33,11 @@ export class AppComponent {
   onDestroyFirst() {
     //rimuove il primo elemento 
     this.serverElements.splice(0, 1);
+  }
+
+  onIntervalFired(firedNumber: number) {
+    console.log("number:", firedNumber);
+    if (firedNumber % 2 === 0) this.evenNumbers.push(firedNumber)
+    else this.oddNumbers.push(firedNumber)
   }
 }

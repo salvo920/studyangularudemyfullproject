@@ -7,7 +7,8 @@
       <button class="btn btn-danger" (click)="onDestroyFirst()"> Destroy First Button </button>
       <app-server-element *ngFor="let serverElement of serverElements" [serverElement]="serverElement"
         [serverName]="serverElement.name">
-        <p>
+        <!-- Nota bene : contentParagraph è l'Elemento del componente padre , cioe app > server content  -->
+        <p #contentParagraph>
           <strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>
           <em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>
         </p>
@@ -19,3 +20,22 @@
 <hr>
 <app-life-cycle></app-life-cycle>
 <hr>
+
+<!-- si lancia il comando personalizzato inserito nel file package.json , tramite il comando : npm run nomeComando(quello a sinistra dei :) -->
+
+<hr>
+
+<app-game-control (intervalFired)="onIntervalFired($event)"></app-game-control>
+
+
+<hr>
+
+<h2> child components </h2>
+6) e 7) dentro il componente e 8) dentro il componente
+<app-even *ngFor="let evenNumber of evenNumbers" [evenNumber]="evenNumber"></app-even>
+
+6) e 7) dentro il componente e 8) dentro il componente
+<app-odd *ngFor="let oddNumber of oddNumbers" [oddNumber]="oddNumber"></app-odd>
+
+
+<!-- fermo al video 83 - esercizio da continuare  -->
