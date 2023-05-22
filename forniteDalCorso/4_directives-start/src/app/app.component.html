@@ -4,12 +4,81 @@
       <button class="btn btn-primary" (click)="onlyOdd = !onlyOdd">Only show odd numbers</button>
       <br><br>
       <ul class="list-group">
-        <li class="list-group-item" *ngFor="let oddNumber of numbers">
-        </li>
+
+        <!-- [ngClass] e [ngStyle] dopo = richiedonoo sempre un oggetto javascript , formattato seguendo questo pattern : 
+        { nomePropieta : condizione che la attiva }  -->
+        <div *ngIf="onlyOdd">
+          <li class="list-group-item" *ngFor="let oddNumber of oddNumbers" [ngClass]="{odd:oddNumber % 2 !==0}"
+            [ngStyle]="{backgroundColor: oddNumber % 2 !== 0 ? 'yellow' : 'transparent'}">
+            {{ oddNumber}}
+          </li>
+        </div>
+
+        <!--
+        * : indica ad angular che si tratta di una direttiva strutturale , quindi dovra modificare il DOM , 
+        in realta dietro le quinte ,angular andra ad effettuare il binding tra ngIf e il suo contenuto , 
+        possiamo verlo infatti se usiamo il tag ngT-Template , il quale andra ad effeuttare il bind con ngiF
+        tramite le parentesi [] , per il resto funzionano esattamente allo stesso modo 
+        -->
+        <div *ngIf="!onlyOdd">
+          <li class="list-group-item" *ngFor="let evenNumber of evenNumbers" [ngClass]="{odd:evenNumber % 2 !==0}"
+            [ngStyle]="{backgroundColor: evenNumber % 2 !== 0 ? 'yellow' : 'transparent'}">
+            {{ evenNumber}}
+          </li>
+        </div>
+
+        <!-- ng-template e un tag di render condizionale di angular , che fa da contenitor che non sara presente alla fine 
+        del render  -->
+        <ng-template [ngIf]="!onlyOdd">
+          <h4> stesso elemento di quello sopra ma , con ng-template tag di angular </h4>
+          <div>
+            <li class="list-group-item" *ngFor="let evenNumber of evenNumbers" [ngClass]="{odd:evenNumber % 2 !==0}"
+              [ngStyle]="{backgroundColor: evenNumber % 2 !== 0 ? 'yellow' : 'transparent'}">
+              {{ evenNumber}}
+            </li>
+          </div>
+        </ng-template>
+
+
+
+        <ng-template [appUnless]="onlyOdd">
+          <h4> stesso elemento di quello sopra ma , con ng-template tag di angular e con direttiva strutturale
+            personalizzata </h4>
+          <div>
+            <li class="list-group-item" *ngFor="let evenNumber of evenNumbers" [ngClass]="{odd:evenNumber % 2 !==0}"
+              [ngStyle]="{backgroundColor: evenNumber % 2 !== 0 ? 'yellow' : 'transparent'}">
+              {{ evenNumber}}
+            </li>
+          </div>
+        </ng-template>
+
+        <p appAppHighLights> questo background sara verde </p>
+        <!-- 
+        defaultColor rientra in quei casi particolari in cui e possibile omettere le parentesi [] 
+        e anche le '' , da fare attenzione a quando si usa perche il nome non deve essere uguale o confodibile  
+        con una propieta HTML esistente  
+       -->
+        <p [appBetterHighLights]="'red'" defaultColor="yellow"> questo background sara blu </p>
+
       </ul>
       <ng-template [ngIf]="onlyOdd">
         <p>Only odd</p>
       </ng-template>
+
+
+      <!-- direttiva ngSwitch e ngswitchCase e ngswitchDefault , ngSwitch non e una direttiva strutturale , 
+      mentre lo sono ngSwitchCase e ngSwitchDefault , quindi prima del nome e richiesto * -->
+      <div [ngSwitch]="value"> value is :
+        <p *ngSwitchCase="5"> 5 </p>
+        <p *ngSwitchCase="10"> 10 </p>
+        <p *ngSwitchCase="100"> 100 </p>
+        <p *ngSwitchDefault> default </p>
+      </div>
+
+
     </div>
   </div>
 </div>
+
+
+<!-- fermo al video 99  -->
