@@ -1,0 +1,92 @@
+<hr>
+
+<h2> ricorda che gli pseudo selettori non possono essere usati come selettori di un componente </h2>
+<h3> selettore tramite attributo</h3>
+<!-- <div app-server> </div> -->
+
+<h3> selettore tramite classe</h3>
+<!-- <div class="app-server"> </div> -->
+
+
+<hr>
+<button class="btn btn-primary" [disabled]="!allowNewServer" (click)="onCreateServer()"> Add New Server </button>
+<p [innerText]="allowNewServer"> </p>
+<!-- <p [innerText]="serverCreationStatus"> </p> -->
+<!-- ng-if , aggiunge e rimuove i nodi del DOM dinamicamente -->
+<p *ngIf="serverCreated; else noServerCreated"> Server was created!! Server name is {{ serverName }}</p>
+<ng-template #noServerCreated>
+    <p> No Server was created!! </p>
+</ng-template>
+
+<hr>
+
+<h3> selettore tramite selettore css </h3>
+<app-server *ngFor="let server of serversName"></app-server>
+
+<hr>
+<label for=""> Server Name </label>
+<!-- bind unidirezionale , solo da input html a variabile ts  -->
+<!-- $event sono i dati che vengono passati alla funzione onUpdateUsername -->
+<!-- <input type="text" class="form-control" (input)="onUpdateServerName($event)"> -->
+<!-- bind bidirezionale da html a variabile ts e viceversa  -->
+<input type="text" class="form-control" [(ngModel)]="serverName">
+<p [innerText]="serverName"> </p>
+
+
+
+
+<hr>
+
+<h3> execise video 35 </h3>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h3> task :
+                1) add a input filed which update a property ('username') via Two-way-Binding
+                2) Output the username poperty via string interpolation ( in a paragraph below the input )
+                3) Add a button which may only be clicked if the username is not empty string
+                4) Upon clicking the button , the username should be reset to an empty string
+            </h3>
+
+            1)
+            <label for=""> Username </label>
+            <input type="text" class="form-control" [(ngModel)]="username">
+
+            2)
+            <p [innerText]=""> {{ username }}</p>
+
+            3) e 4)
+            <p>
+                <button [disabled]="!isEmpty(username)" (click)=" resetUsername()"> Reset Username </button>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<hr>
+
+<h3> execise video 42
+    1) Add a button which say display details.
+    2) Add a paragraph with any content of your choise (e.g. 'SecretPassword = tuna').
+    3) Toggle the displaying of that paragraph with the button created in the first step.
+    4) Log all button clicks in an array and output tha array below the secret paragraph ( maybe log a timestamp or a
+    simply an increment number ).
+    5)Starting at 5th Log , give all future log a blue background (via ngStyle) and white Color (ngClass)
+</h3>
+
+
+1)
+<button (click)="displayDetails()"> Display Details </button>
+2)
+<p *ngIf="displayDetail"> {{ SecretPassword }}</p>
+
+3) e 4) e 5)
+<!-- passando index e usando nella comparazione posso dire dal 5 elemento in poi senza intaccare gli altri elementi  -->
+<p [ngStyle]="{backgroundColor:getColorBack(index)}" [ngClass]="{textwhite:getTextColor(index)}"
+    *ngFor="let date of displayDetailClick; index as index"> {{ index }} ,
+    {{ date }}</p>
+
+
+<hr>

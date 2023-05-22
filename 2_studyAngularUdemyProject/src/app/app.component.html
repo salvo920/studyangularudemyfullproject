@@ -1,0 +1,24 @@
+<app-header (featureSelected)="onNavigate($event)"></app-header>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <app-recipes *ngIf="loadedFeature === 'recipe'; else shoppingList"></app-recipes>
+            <ng-template #shoppingList>
+                <app-shopping-list></app-shopping-list>
+            </ng-template>
+        </div>
+    </div>
+</div>
+
+<!-- direttive  direttive di attributo e strutturali  : 
+    angular definisce 2 tipi di direttive di attributo e strutturali  :
+    di attributo : sono delle direttive che modificano l'elemento il tag html a cui sono applciati , 
+    sembrano dei normali attributi html possibilmente con dataBinding o eventBinding. 
+    Hanno effetto solo sull'elemento su cui sono applicate.
+
+    strutturali : in grado di cambiare la struttura del Dom come ad esempio *ngIf , 
+    che va ad aggiungere o rimuovere un nodo del Dom.
+    sembrano dei normali tag html ma hanno un vantaggio ( destrutturazione dello zucchero  ).
+    Hanno effetto su un area del DOM gli elementi sono aggiunti / rimossi.
+    
+-->
