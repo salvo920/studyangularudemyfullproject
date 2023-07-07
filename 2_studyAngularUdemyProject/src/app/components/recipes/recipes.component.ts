@@ -1,18 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CRecipe } from './crecipe.model';
+import { RecipeService } from 'src/app/services/recipe/recipe.service';
 
 @Component({
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
   styleUrls: ['./recipes.component.css']
 })
-export class RecipesComponent {
+export class RecipesComponent implements OnInit {
   recipeItem !: CRecipe
-  RecipeNameGoInDetails(recipeItem: CRecipe) {
-    console.log("recipeName parent :", recipeItem);
 
-    this.recipeItem = recipeItem
+  constructor(private recipeService: RecipeService) { }
 
+  ngOnInit(): void {
+    //effettuiamo il subscrbe per ascoltare quando l'evento viene emesso , inoltre lo possiamo fare 
+    // perche questa e la stessa istanza condivisa con tutti gli elementi recipe della classe recipeService 
+    this.recipeService.recipeSelected.subscribe((recipe: CRecipe) => this.recipeItem = recipe);
   }
+
 
 }

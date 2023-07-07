@@ -8,7 +8,6 @@ import { RecipeService } from 'src/app/services/recipe/recipe.service';
   styleUrls: ['./recipes-list.component.css']
 })
 export class RecipesListComponent implements OnInit {
-  @Output() emitRecipeName = new EventEmitter<CRecipe>();
   recipes: CRecipe[] = [];
 
   constructor(private recipeService: RecipeService) {
@@ -18,10 +17,5 @@ export class RecipesListComponent implements OnInit {
     this.recipes = this.recipeService.getAllRecipes();
   }
 
-  OnclickedRecipe(recipeSelect: CRecipe) {
-    // this.OnclickedRecipe.emit();
-    console.log("recipeName list :", recipeSelect);
-    this.emitRecipeName.emit(recipeSelect);
-  }
 
 }

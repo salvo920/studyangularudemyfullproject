@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-5">
         <!-- quando si raccolgono i dati emessi si deve usare $event , altrimenti i dati non saranno raccolti  -->
-        <app-recipes-list (emitRecipeName)="RecipeNameGoInDetails($event)"></app-recipes-list>
+        <app-recipes-list></app-recipes-list>
     </div>
     <div class="col-md-7">
         <app-recipes-detail *ngIf="recipeItem ; else recipeNotSelected"
