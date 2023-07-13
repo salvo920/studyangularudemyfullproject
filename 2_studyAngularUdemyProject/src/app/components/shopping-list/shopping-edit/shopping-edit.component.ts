@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { ShoppingListService } from 'src/app/services/shoppingList/shopping-list.service';
 import { CIngridients } from 'src/app/shared/CIngredients/CIngridients.model';
 
 @Component({
@@ -9,12 +10,11 @@ import { CIngridients } from 'src/app/shared/CIngredients/CIngridients.model';
 export class ShoppingEditComponent implements AfterViewInit {
   @ViewChild('nameInput') nameInputRef!: ElementRef
   @ViewChild('amountInput') amountInputRef!: ElementRef
-  @Output() IngridientAdded = new EventEmitter<CIngridients>();
   /*
   nameInptuVar!: HTMLInputElement
   amountInputVar!: HTMLInputElement
   */
-
+  constructor(private shoppingListService: ShoppingListService) { }
 
   ngAfterViewInit() {
     console.log("nameInput:", this.nameInputRef.nativeElement);
@@ -33,8 +33,7 @@ export class ShoppingEditComponent implements AfterViewInit {
     const ingName = this.nameInputRef.nativeElement.value
     const ingAmount = this.amountInputRef.nativeElement.value
     const ingridient: CIngridients = new CIngridients(ingName, ingAmount);
-    this.IngridientAdded.emit(ingridient);
-
+    this.shoppingListService.addIngridient(ingridient);
   }
 
 

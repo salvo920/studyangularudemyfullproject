@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ShoppingListService } from 'src/app/services/shoppingList/shopping-list.service';
 import { CIngridients } from 'src/app/shared/CIngredients/CIngridients.model';
 
 @Component({
@@ -6,15 +7,14 @@ import { CIngridients } from 'src/app/shared/CIngredients/CIngridients.model';
   templateUrl: './shopping-list.component.html',
   styleUrls: ['./shopping-list.component.css']
 })
-export class ShoppingListComponent {
-  ingridients: CIngridients[] = [
-    new CIngridients('Apple', 10),
-    new CIngridients('Mango', 6),
-    new CIngridients('Fragole', 4),
-  ]
+export class ShoppingListComponent implements OnInit {
+  ingridients: CIngridients[] = []
 
-  onIngridientAdded(ingridient: CIngridients) {
-    this.ingridients.push(ingridient);
+  constructor(private shoppingListService: ShoppingListService) { }
+  ngOnInit(): void {
+    this.ingridients = this.shoppingListService.getIngridients();
+    this.shoppingListService.ingridientsChange.subscribe(
+      (ingridients: CIngridients[]) => { this.ingridients = ingridients }
+    );
   }
-
 }
