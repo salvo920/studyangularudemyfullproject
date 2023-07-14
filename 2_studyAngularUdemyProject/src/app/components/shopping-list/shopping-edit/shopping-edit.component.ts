@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { ShoppingListService } from 'src/app/services/shoppingList/shopping-list.service';
-import { CIngridients } from 'src/app/shared/CIngredients/CIngridients.model';
+import { CIngridient } from 'src/app/shared/CIngredient/CIngridient.model';
 
 @Component({
   selector: 'app-shopping-edit',
@@ -32,7 +32,7 @@ export class ShoppingEditComponent implements AfterViewInit {
   onAddingIngridient() {
     const ingName = this.nameInputRef.nativeElement.value
     const ingAmount = this.amountInputRef.nativeElement.value
-    const ingridient: CIngridients = new CIngridients(ingName, ingAmount);
+    const ingridient: CIngridient = new CIngridient(ingName, ingAmount);
     this.shoppingListService.addIngridient(ingridient);
   }
 

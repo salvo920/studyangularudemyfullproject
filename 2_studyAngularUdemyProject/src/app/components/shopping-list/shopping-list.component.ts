@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingListService } from 'src/app/services/shoppingList/shopping-list.service';
-import { CIngridients } from 'src/app/shared/CIngredients/CIngridients.model';
+import { CIngridient } from 'src/app/shared/CIngredient/CIngridient.model';
 
 @Component({
   selector: 'app-shopping-list',
@@ -8,13 +8,13 @@ import { CIngridients } from 'src/app/shared/CIngredients/CIngridients.model';
   styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit {
-  ingridients: CIngridients[] = []
+  ingridients: CIngridient[] = []
 
   constructor(private shoppingListService: ShoppingListService) { }
   ngOnInit(): void {
     this.ingridients = this.shoppingListService.getIngridients();
     this.shoppingListService.ingridientsChange.subscribe(
-      (ingridients: CIngridients[]) => { this.ingridients = ingridients }
+      (ingridients: CIngridient[]) => { this.ingridients = ingridients }
     );
   }
 }

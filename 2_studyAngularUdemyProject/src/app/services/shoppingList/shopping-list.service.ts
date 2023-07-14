@@ -1,15 +1,15 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
-import { CIngridients } from 'src/app/shared/CIngredients/CIngridients.model';
+import { CIngridient } from 'src/app/shared/CIngredient/CIngridient.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShoppingListService {
-  @Output() ingridientsChange = new EventEmitter<CIngridients[]>()
-  private ingridients: CIngridients[] = [
-    new CIngridients('Apple', 10),
-    new CIngridients('Mango', 6),
-    new CIngridients('Fragole', 4),
+  @Output() ingridientsChange = new EventEmitter<CIngridient[]>()
+  private ingridients: CIngridient[] = [
+    new CIngridient('Apple', 10),
+    new CIngridient('Mango', 6),
+    new CIngridient('Fragole', 4),
   ]
 
   constructor() { }
@@ -19,7 +19,7 @@ export class ShoppingListService {
     return this.ingridients.slice();
   }
 
-  addIngridient(ingridient: CIngridients) {
+  addIngridient(ingridient: CIngridient) {
     this.ingridients.push(ingridient);
     this.ingridientsChange.emit(this.ingridients.slice());
   }

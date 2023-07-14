@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { CRecipe } from '../crecipe.model';
+import { CRecipe } from '../../../shared/CRecipe/CRecipe.model';
 import { RecipeService } from 'src/app/services/recipe/recipe.service';
 
 @Component({
