@@ -1,6 +1,7 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { CRecipe } from 'src/app/shared/CRecipe/CRecipe.model';
 import { CIngridient } from 'src/app/shared/CIngredient/CIngridient.model';
+import { ShoppingListService } from '../shoppingList/shopping-list.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -14,7 +15,7 @@ export class RecipeService {
 	];
 
 
-	constructor() {
+	constructor(private shoppingListService: ShoppingListService) {
 
 
 	}
@@ -23,6 +24,11 @@ export class RecipeService {
 		//  usiamo lo slice() vuoto perche cosi ritorniamo una copia dell'array , in modo da non modificare l'array originale in caso 
 		// perche js se non si crea un nuovo array viene passato per referece ( lo stesso array originale ) e le modifiche lo andrebbero ad intaccare 
 		return this.recipes.slice();
+	}
+
+
+	addIngridientsInShoppingList(ingridients: CIngridient[]) {
+		this.shoppingListService.addIngridients(ingridients);
 	}
 
 

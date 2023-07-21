@@ -23,4 +23,9 @@ export class ShoppingListService {
     this.ingridients.push(ingridient);
     this.ingridientsChange.emit(this.ingridients.slice());
   }
+
+  addIngridients(ingridients: CIngridient[]) {
+    this.ingridients.push(...ingridients) // lo spread operator aggiunge gli elementi di un array uno alla volta 
+    this.ingridientsChange.emit(this.ingridients.slice());
+  }
 }
